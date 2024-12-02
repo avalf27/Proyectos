@@ -1,0 +1,222 @@
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9; /* Fondo gris claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  /* Contenedor Principal */
+  .contact-container {
+    display: flex;
+    flex-direction: row; /* Columnas en pantallas grandes */
+    gap: 20px; /* Espacio uniforme entre columnas */
+    margin: 20px auto;
+    max-width: 1000px; /* Ancho máximo del contenedor */
+    justify-content: space-between; /* Distribuir columnas uniformemente */
+    align-items: stretch; /* Asegurar misma altura en columnas */
+  }
+  
+  /* Secciones */
+  .form-section,
+  .group-section,
+  .list-section {
+    flex: 1; /* Todas las secciones tienen el mismo tamaño */
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinear contenido hacia la parte superior */
+    min-height: 400px; /* Altura mínima para mantener consistencia visual */
+  }
+  
+  .form-section h2,
+  .group-section h2,
+  .list-section h2 {
+    text-align: center;
+    margin-bottom: 25px; /* Aumentar el espaciado debajo del título */
+    color: #007bff; /* Azul */
+  }
+  
+  /* Campos de Entrada */
+  .contact-form input,
+  .contact-form select,
+  .add-group input {
+    width: 100%;
+    padding: 12px 15px; /* Ajustar padding para inputs */
+    font-size: 15px; /* Aumentar tamaño de fuente para mayor legibilidad */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9fafc; /* Fondo gris claro */
+    color: #333; /* Texto oscuro */
+    margin-bottom: 20px; /* Más espacio entre los campos */
+  }
+  
+  .contact-form input:focus,
+  .add-group input:focus,
+  .contact-form select:focus {
+    outline: none;
+    border-color: #007bff; /* Azul */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* Botones */
+  .contact-form button,
+  .add-group button {
+    background: linear-gradient(45deg, #007bff, #0056b3); /* Azul degradado */
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center; /* Centramos los botones horizontalmente */
+  }
+  
+  .contact-form button:hover,
+  .add-group button:hover {
+    background: linear-gradient(45deg, #0056b3, #007bff); /* Azul invertido */
+    transform: scale(1.05);
+  }
+  
+  .contact-form .cancel-button {
+    background-color: #e74c3c; /* Rojo */
+  }
+  
+  .contact-form .cancel-button:hover {
+    background-color: #c0392b; /* Rojo más oscuro */
+  }
+  
+  /* Lista de Contactos */
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .contact-list li {
+    background-color: #f9fafc; /* Fondo gris claro */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Espacio entre contactos */
+    padding: 15px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Alinear la información y los botones verticalmente */
+  }
+  
+  .contact-list li:hover {
+    background-color: #f1f5fc; /* Azul muy claro */
+    transform: translateY(-2px);
+  }
+  
+  /* Información del Contacto */
+  .contact-info {
+    margin-bottom: 15px; /* Espacio entre la información y los botones */
+  }
+  
+  .contact-info span {
+    font-size: 16px;
+    color: #333; /* Texto oscuro */
+  }
+  
+  /* Botones de Contacto */
+  .contact-list li .action-buttons {
+    display: flex;
+    justify-content: space-between; /* Espacio entre botones */
+    gap: 10px; /* Espacio entre los botones */
+  }
+  
+  .contact-list button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 15px; /* Padding aumentado para mejor visualización */
+    font-size: 14px; /* Tamaño de fuente ajustado */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-list button i {
+    font-size: 14px; /* Reducir tamaño del icono */
+  }
+  
+  .contact-list button:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+  }
+  
+  .contact-list .delete-button {
+    background-color: #e74c3c; /* Rojo */
+  }
+  
+  .contact-list .delete-button:hover {
+    background-color: #c0392b; /* Rojo más oscuro */
+  }
+  
+  /* Responsividad */
+  
+  /* Para Tablets (ancho menor a 768px) */
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column; /* Cambia de columnas a filas */
+      gap: 20px; /* Espacio entre secciones */
+    }
+  
+    .form-section,
+    .group-section,
+    .list-section {
+      width: 100%; /* Secciones ocupan todo el ancho */
+      margin: 0 auto;
+      padding: 20px; /* Mantener el padding consistente */
+    }
+  }
+  
+  /* Para Móviles (ancho menor a 480px) */
+  @media (max-width: 480px) {
+    .search-bar {
+      font-size: 14px; /* Tamaño de fuente ajustado */
+    }
+  
+    .contact-list li {
+      flex-direction: column; /* Apila los elementos verticalmente */
+      align-items: flex-start;
+    }
+  
+    .contact-list li .action-buttons {
+      width: 100%; /* Botones ocupan todo el ancho */
+      justify-content: space-between; /* Botones separados */
+      gap: 8px;
+    }
+  
+    .contact-list button {
+      font-size: 13px; /* Botones más pequeños */
+      padding: 8px 10px;
+    }
+  }
+  
+  /* Animación de aparición */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
