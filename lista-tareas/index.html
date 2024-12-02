@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tareas</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    button {
+      background-color: #ff5252;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1744;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="todoController">
+    <h1>Lista de Tareas</h1>
+
+    <!-- Formulario para agregar tareas -->
+    <input type="text" ng-model="newTask" placeholder="Nueva tarea" ng-keypress="($event.which === 13) && addTask()">
+    <button ng-click="addTask()">Agregar</button>
+
+    <!-- Lista de tareas -->
+    <div class="task-list">
+      <div class="task" ng-repeat="task in tasks">
+        <span ng-class="{'completed': task.completed}" ng-click="toggleTask(task)">
+          {{ task.name }}
+        </span>
+        <button ng-click="deleteTask(task)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
