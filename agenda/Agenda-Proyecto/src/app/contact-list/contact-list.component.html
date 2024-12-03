@@ -10,15 +10,16 @@
     </div>
 
     <!-- Formulario para añadir un contacto -->
-    <form (ngSubmit)="addContact()" class="contact-form">
+    <form (ngSubmit)="addOrUpdateContact()" class="contact-form">
       <input type="text" placeholder="Nombre" [(ngModel)]="contact.name" name="name" required />
       <input type="text" placeholder="Teléfono" [(ngModel)]="contact.phone" name="phone" required />
       <select [(ngModel)]="contact.group" name="group" required>
         <option value="" disabled selected>Selecciona un grupo</option>
         <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
       </select>
+      <!-- Cambiar el texto del botón dependiendo del modo -->
       <button type="submit">
-        <i class="fas fa-user-plus"></i> Añadir Contacto
+        <i class="fas fa-user-plus"></i> {{ isEditing ? 'Guardar Cambios' : 'Añadir Contacto' }}
       </button>
       <button type="button" class="cancel-button" (click)="resetForm()" *ngIf="isEditing">
         Cancelar

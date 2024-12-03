@@ -42,42 +42,57 @@ export class ContactListComponent {
   @ViewChild('contactErrorDiv') contactErrorDiv!: ElementRef;
   @ViewChild('groupErrorDiv') groupErrorDiv!: ElementRef;
 
-  // Añadir contacto
-  addContact() {
+  // Añadir o actualizar contacto
+  addOrUpdateContact() {
     this.contactErrorMessage = '';
-
+  
     // Validar que se haya seleccionado un grupo
     if (!this.contact.group || this.contact.group === '') {
       this.contactErrorMessage = 'Debes seleccionar un grupo para el contacto.';
       this.scrollToError(this.contactErrorDiv);
       return;
     }
-
-    // Validar duplicados
-    const duplicate = this.contacts.some(
-      (c, index) =>
-        (c.name.toLowerCase() === this.contact.name.toLowerCase() ||
-          c.phone === this.contact.phone) &&
+  
+    // Validar duplicados, ignorando el contacto que se está editando actualmente
+    const isDuplicateName = this.contacts.some((c, index) => {
+      return (
+        c.name.toLowerCase() === this.contact.name.toLowerCase() &&
         index !== this.editingIndex
-    );
-
-    if (duplicate) {
-      this.contactErrorMessage = 'Ya existe un contacto con el mismo nombre o número de teléfono.';
+      );
+    });
+  
+    const isDuplicatePhone = this.contacts.some((c, index) => {
+      return (
+        c.phone === this.contact.phone &&
+        index !== this.editingIndex
+      );
+    });
+  
+    if (isDuplicateName) {
+      this.contactErrorMessage = 'Ya existe un contacto con el mismo nombre.';
       this.scrollToError(this.contactErrorDiv);
       return;
     }
-
+  
+    if (isDuplicatePhone) {
+      this.contactErrorMessage = 'Ya existe un contacto con el mismo número de teléfono.';
+      this.scrollToError(this.contactErrorDiv);
+      return;
+    }
+  
     if (this.isEditing) {
-      // Editar contacto
+      // Editar contacto, actualizando el contacto en su índice correspondiente
       this.contacts[this.editingIndex!] = { ...this.contact };
       this.isEditing = false;
     } else {
       // Añadir nuevo contacto
       this.contacts.push({ ...this.contact });
     }
-
+  
     this.resetForm();
   }
+  
+  
 
   // Editar contacto
   editContact(index: number) {
