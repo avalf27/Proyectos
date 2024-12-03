@@ -14,6 +14,7 @@ export class ContactListComponent {
   contacts = [
     { name: 'Juan Pérez', phone: '123456789', group: 'Familia' },
     { name: 'Ana Gómez', phone: '987654321', group: 'Trabajo' },
+    { name: 'Carlos García', phone: '555444333', group: 'Amigos' }
   ];
 
   // Lista de grupos
@@ -25,8 +26,9 @@ export class ContactListComponent {
   // Variable para agregar un nuevo grupo
   newGroup = '';
 
-  // Estado de búsqueda
+  // Estado de búsqueda y grupo seleccionado
   searchTerm: string = '';
+  selectedGroup: string = '';
 
   // Variables para edición
   isEditing = false;
@@ -117,22 +119,35 @@ export class ContactListComponent {
     this.groupErrorMessage = ''; // Limpiar mensaje de error
   }
 
-  // Filtrar contactos por búsqueda
+  // Filtrar contactos por grupo y búsqueda
   get filteredContacts() {
-    return this.contacts.filter(
-      (contact) =>
-        contact.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        contact.phone.includes(this.searchTerm)
-    );
+    let filtered = this.contacts;
+
+    // Filtrar por grupo seleccionado, si se seleccionó uno
+    if (this.selectedGroup) {
+      filtered = filtered.filter(contact => contact.group === this.selectedGroup);
+    }
+
+    // Filtrar por el término de búsqueda, si se ingresó uno
+    if (this.searchTerm.trim() !== '') {
+      filtered = filtered.filter(
+        (contact) =>
+          contact.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          contact.phone.includes(this.searchTerm)
+      );
+    }
+
+    return filtered;
   }
 
-  // Agrupar contactos por grupo
+  // Obtener contactos agrupados por grupo considerando los filtros
   get groupedContacts() {
     const grouped = this.groups.map((group) => ({
       group,
-      contacts: this.contacts.filter((contact) => contact.group === group),
+      contacts: this.filteredContacts.filter((contact) => contact.group === group),
     }));
 
+    // Filtrar solo los grupos que tienen contactos coincidentes
     return grouped.filter((group) => group.contacts.length > 0);
   }
 

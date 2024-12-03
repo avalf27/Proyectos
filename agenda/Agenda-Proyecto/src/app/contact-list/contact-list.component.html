@@ -1,88 +1,94 @@
 <div class="contact-container">
-    <!-- Sección del Formulario -->
-    <!-- Sección del Formulario de Contacto -->
-    <div class="form-section">
-        <h2>Crear Contacto</h2>
-  
-        <!-- Mostrar mensaje de error del contacto -->
-        <div *ngIf="contactErrorMessage" #contactErrorDiv class="error-message">
-        <i class="fas fa-exclamation-circle"></i>
-        {{ contactErrorMessage }}
-        </div>
-  
-        <!-- Formulario para añadir un contacto -->
-        <form (ngSubmit)="addContact()" class="contact-form">
-        <input type="text" placeholder="Nombre" [(ngModel)]="contact.name" name="name" required />
-        <input type="text" placeholder="Teléfono" [(ngModel)]="contact.phone" name="phone" required />
-        <select [(ngModel)]="contact.group" name="group" required>
-            <option value="" disabled selected>Selecciona un grupo</option>
-            <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
-        </select>
-        <button type="submit">
-            <i class="fas fa-user-plus"></i> Añadir Contacto
-        </button>
-        <button type="button" class="cancel-button" (click)="resetForm()" *ngIf="isEditing">
-            Cancelar
-        </button>
-        </form>
+  <!-- Sección del Formulario de Contacto -->
+  <div class="form-section">
+    <h2>Crear Contacto</h2>
+
+    <!-- Mostrar mensaje de error del contacto -->
+    <div *ngIf="contactErrorMessage" #contactErrorDiv class="error-message">
+      <i class="fas fa-exclamation-circle"></i>
+      {{ contactErrorMessage }}
     </div>
-  
+
+    <!-- Formulario para añadir un contacto -->
+    <form (ngSubmit)="addContact()" class="contact-form">
+      <input type="text" placeholder="Nombre" [(ngModel)]="contact.name" name="name" required />
+      <input type="text" placeholder="Teléfono" [(ngModel)]="contact.phone" name="phone" required />
+      <select [(ngModel)]="contact.group" name="group" required>
+        <option value="" disabled selected>Selecciona un grupo</option>
+        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      </select>
+      <button type="submit">
+        <i class="fas fa-user-plus"></i> Añadir Contacto
+      </button>
+      <button type="button" class="cancel-button" (click)="resetForm()" *ngIf="isEditing">
+        Cancelar
+      </button>
+    </form>
+  </div>
+
   <!-- Sección para Gestionar Grupos -->
   <div class="group-section">
     <h2>Gestionar Grupos</h2>
-  
+
     <!-- Mostrar mensaje de error del grupo -->
     <div *ngIf="groupErrorMessage" #groupErrorDiv class="error-message">
       <i class="fas fa-exclamation-circle"></i>
       {{ groupErrorMessage }}
     </div>
-  
+
     <!-- Campo para añadir un nuevo grupo -->
     <div class="add-group">
       <input type="text" [(ngModel)]="newGroup" placeholder="Nuevo grupo" name="newGroup" />
       <button type="button" (click)="addGroup()">Añadir Grupo</button>
     </div>
   </div>
-  
-  
-    <!-- Sección de Lista de Contactos -->
-    <div class="list-section">
-      <h2>Lista de Contactos</h2>
-  
-      <!-- Barra de búsqueda -->
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input
-          type="text"
-          placeholder="Buscar..."
-          [(ngModel)]="searchTerm"
-          class="search-bar"
-        />
-      </div>
-  
-      <!-- Lista agrupada por grupo -->
-        <div *ngFor="let group of groupedContacts">
-            <h3>{{ group.group }}</h3>
-            <ul class="contact-list">
-            <li *ngFor="let contact of group.contacts">
-                <!-- Información del contacto -->
-                <div class="contact-info">
-                <span>{{ contact.name }} - {{ contact.phone }}</span>
-                </div>
-                <!-- Botones de acción debajo de la información -->
-                <div class="action-buttons">
-                <!-- Botón Editar -->
-                <button (click)="editContact(contacts.indexOf(contact))" class="edit-button">
-                    <i class="fas fa-edit"></i> Editar
-                </button>
-                <!-- Botón Eliminar -->
-                <button class="delete-button" (click)="deleteContact(contacts.indexOf(contact))">
-                    <i class="fas fa-trash-alt"></i> Eliminar
-                </button>
-                </div>
-            </li>
-            </ul>
-        </div>
+
+  <!-- Sección de Lista de Contactos -->
+  <div class="list-section">
+    <h2>Lista de Contactos</h2>
+
+    <!-- Selección de Grupo para Filtrar Contactos -->
+    <div class="filter-group">
+      <label for="groupFilter">Filtrar por grupo:</label>
+      <select id="groupFilter" [(ngModel)]="selectedGroup" class="filter-select">
+        <option value="">Todos los grupos</option>
+        <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+      </select>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input
+        type="text"
+        placeholder="Buscar por nombre o telefono..."
+        [(ngModel)]="searchTerm"
+        class="search-bar"
+      />
+    </div>
+
+    <!-- Mostrar contactos filtrados agrupados por grupo -->
+    <div *ngFor="let group of groupedContacts">
+      <h3>{{ group.group }}</h3>
+      <ul class="contact-list">
+        <li *ngFor="let contact of group.contacts">
+          <!-- Información del contacto -->
+          <div class="contact-info">
+            <span>{{ contact.name }} - {{ contact.phone }}</span>
+          </div>
+          <!-- Botones de acción debajo de la información -->
+          <div class="action-buttons">
+            <!-- Botón Editar -->
+            <button (click)="editContact(contacts.indexOf(contact))" class="edit-button">
+              <i class="fas fa-edit"></i>
+            </button>
+            <!-- Botón Eliminar -->
+            <button class="delete-button" (click)="deleteContact(contacts.indexOf(contact))">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-  
+</div>
