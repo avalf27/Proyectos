@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css'],
-  imports: [QRCodeComponent,CommonModule, FormsModule],
+  imports: [QRCodeModule,QRCodeComponent,CommonModule, FormsModule],
 })
 export class ContactListComponent {
   // Lista de contactos

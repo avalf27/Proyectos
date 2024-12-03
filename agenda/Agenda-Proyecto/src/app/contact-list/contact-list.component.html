@@ -98,7 +98,11 @@
   </div>
   <!-- Div para mostrar el código QR -->
   <div *ngIf="qrData" class="qr-code-container">
-    <qrcode [qrdata]="qrData" [size]="256" [errorCrrectionLevel]="'M'"></qrcode>
+    <qrcode 
+      [qrdata]="qrData"
+      [size]="256"
+      [level]="'M'">
+    </qrcode>
     <button (click)="closeQRCode()">Cerrar QR</button>
   </div>
 </div>
