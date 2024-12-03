@@ -87,9 +87,18 @@
             <button class="delete-button" (click)="deleteContact(contacts.indexOf(contact))">
               <i class="fas fa-trash-alt"></i>
             </button>
+            <!-- Botón Generar QR -->
+            <button class="qr-button" (click)="generateQRCode(contact)">
+              <i class="fas fa-qrcode"></i> Generar QR
+            </button>
           </div>
         </li>
       </ul>
     </div>
+  </div>
+  <!-- Div para mostrar el código QR -->
+  <div *ngIf="qrData" class="qr-code-container">
+    <qrcode [qrdata]="qrData" [size]="256" [errorCrrectionLevel]="'M'"></qrcode>
+    <button (click)="closeQRCode()">Cerrar QR</button>
   </div>
 </div>

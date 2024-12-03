@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css'],
-  imports: [CommonModule, FormsModule],
+  imports: [QRCodeComponent,CommonModule, FormsModule],
 })
 export class ContactListComponent {
   // Lista de contactos
@@ -41,6 +42,19 @@ export class ContactListComponent {
   // Referencias al div del mensaje de error
   @ViewChild('contactErrorDiv') contactErrorDiv!: ElementRef;
   @ViewChild('groupErrorDiv') groupErrorDiv!: ElementRef;
+
+   // Variables de contactos, grupos, etc...
+   qrData: string | null = null;
+
+  // Método para generar el QR
+    generateQRCode(contact: { name: string; phone: string; group: string }) {
+    this.qrData = `Nombre: ${contact.name}\nTeléfono: ${contact.phone}\nGrupo: ${contact.group}`;
+    }
+
+  // Método para cerrar el QR
+    closeQRCode() {
+      this.qrData = null;
+    }
 
   // Añadir o actualizar contacto
   addOrUpdateContact() {
@@ -133,6 +147,7 @@ export class ContactListComponent {
     this.newGroup = ''; // Limpiar el campo de entrada
     this.groupErrorMessage = ''; // Limpiar mensaje de error
   }
+
 
   // Filtrar contactos por grupo y búsqueda
   get filteredContacts() {

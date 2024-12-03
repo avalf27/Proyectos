@@ -224,6 +224,79 @@ body {
   background-color: #c0392b; /* Rojo más oscuro */
 }
 
+/* Estilo para el contenedor del filtro por grupo */
+.filter-group {
+  margin-bottom: 20px; /* Espacio inferior para separar del siguiente elemento */
+  display: flex; /* Utilizamos flexbox para alinear elementos */
+  align-items: center; /* Alinear verticalmente al centro */
+  gap: 10px; /* Espacio entre el label y el select */
+}
+
+/* Estilo para el label del filtro */
+.filter-group label {
+  font-size: 15px; /* Tamaño de fuente */
+  color: #333; /* Color oscuro para el texto */
+  font-weight: bold; /* Fuente en negrita */
+}
+
+/* Estilo para el select del filtro */
+.filter-select {
+  padding: 10px 15px; /* Padding para un tamaño cómodo */
+  font-size: 15px; /* Tamaño de fuente consistente */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #f9fafc; /* Fondo gris claro */
+  color: #333; /* Color oscuro para el texto */
+  cursor: pointer; /* Mostrar cursor de puntero al pasar por encima */
+  transition: all 0.3s ease; /* Transición suave para cambios de estilo */
+}
+
+/* Estilo para cuando el select está enfocado */
+.filter-select:focus {
+  outline: none; /* Remover el borde azul predeterminado */
+  border-color: #007bff; /* Cambiar el color del borde al azul */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Sombra azul clara alrededor */
+}
+
+/* Botón para copiar */
+.copy-button {
+  background-color: #17a2b8; /* Azul claro */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+  background-color: #138496; /* Azul más oscuro */
+}
+
+/* Botón para generar QR */
+.qr-button {
+  background-color: #6f42c1; /* Púrpura */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.qr-button:hover {
+  background-color: #563d7c; /* Púrpura más oscuro */
+}
+
+/* Contenedor de QR */
+.qr-code-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
 /* Responsividad */
 
 /* Para Tablets (ancho menor a 768px) */
@@ -262,6 +335,24 @@ body {
   .contact-list button {
     font-size: 13px; /* Botones más pequeños */
     padding: 8px 10px;
+  }
+}
+
+/* Estilo adicional para el contenedor del filtro en pantallas pequeñas */
+@media (max-width: 480px) {
+  .filter-group {
+    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+    align-items: flex-start; /* Alinear hacia el inicio */
+    gap: 5px; /* Reducir el espacio entre el label y el select */
+  }
+
+  .filter-group label {
+    font-size: 14px; /* Reducir el tamaño de fuente para móviles */
+  }
+
+  .filter-select {
+    font-size: 14px; /* Reducir el tamaño de fuente para móviles */
+    width: 100%; /* Asegurar que el select ocupe todo el ancho disponible */
   }
 }
 
