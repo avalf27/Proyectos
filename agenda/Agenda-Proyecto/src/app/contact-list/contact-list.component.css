@@ -30,7 +30,7 @@ body {
     background-color: #ffffff; /* Fondo blanco */
     border-radius: 15px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 25px; /* Más padding para un diseño más espacioso */
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Alinear contenido hacia la parte superior */
@@ -50,7 +50,7 @@ body {
   .contact-form select,
   .add-group input {
     width: 100%;
-    padding: 12px 15px; /* Ajustar padding para inputs */
+    padding: 14px 16px; /* Aumentar el tamaño de padding para inputs más prominentes */
     font-size: 15px; /* Aumentar tamaño de fuente para mayor legibilidad */
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -95,6 +95,58 @@ body {
     background-color: #c0392b; /* Rojo más oscuro */
   }
   
+  /* Mensajes de Error */
+  .error-message {
+    color: white; /* Texto blanco */
+    background: linear-gradient(45deg, #e74c3c, #c0392b); /* Degradado rojo */
+    border: 2px solid #c0392b; /* Borde más oscuro */
+    padding: 10px 12px; /* Reducir padding para hacerlo más compacto */
+    border-radius: 10px; /* Bordes redondeados */
+    font-size: 15px; /* Tamaño de fuente ajustado */
+    margin-bottom: 20px; /* Espacio adecuado debajo del mensaje de error */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el icono y el texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    animation: fadeIn 0.5s ease-in-out; /* Animación de aparición */
+  }
+  
+  /* Icono dentro del mensaje de error */
+  .error-message i {
+    color: white; /* Blanco para el icono */
+    font-size: 18px; /* Tamaño del icono */
+  }
+  
+  /* Barra de Búsqueda */
+  .search-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    padding: 12px 16px; /* Aumentar padding para hacerlo más prominente */
+    font-size: 15px; /* Aumentar tamaño de fuente */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+  }
+  
+  .search-bar:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 15px; /* Ajustar alineación derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #888; /* Gris */
+  }
+  
   /* Lista de Contactos */
   .contact-list {
     list-style: none;
@@ -103,15 +155,16 @@ body {
   }
   
   .contact-list li {
+    display: flex;
+    justify-content: space-between; /* Nombre a la izquierda, botones a la derecha */
+    align-items: center;
+    padding: 15px 20px; /* Aumentar padding para mejor estética */
     background-color: #f9fafc; /* Fondo gris claro */
     border: 1px solid #ccc;
     border-radius: 10px;
-    margin-bottom: 20px; /* Espacio entre contactos */
-    padding: 15px;
+    margin-bottom: 20px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column; /* Alinear la información y los botones verticalmente */
   }
   
   .contact-list li:hover {
@@ -119,21 +172,15 @@ body {
     transform: translateY(-2px);
   }
   
-  /* Información del Contacto */
-  .contact-info {
-    margin-bottom: 15px; /* Espacio entre la información y los botones */
-  }
-  
-  .contact-info span {
-    font-size: 16px;
+  .contact-list span {
+    font-size: 15px; /* Tamaño adecuado para legibilidad */
     color: #333; /* Texto oscuro */
   }
   
   /* Botones de Contacto */
   .contact-list li .action-buttons {
     display: flex;
-    justify-content: space-between; /* Espacio entre botones */
-    gap: 10px; /* Espacio entre los botones */
+    gap: 10px; /* Espacio entre botones */
   }
   
   .contact-list button {
